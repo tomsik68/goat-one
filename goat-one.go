@@ -2,6 +2,9 @@ package main
 
 import (
 	"flag"
+	"os"
+
+	"github.com/goat-project/goat-one/config"
 )
 
 // CLI options
@@ -25,4 +28,14 @@ func main() {
 	}
 
 	flag.Parse()
+
+	var cfg config.Configuration
+	if _, err := os.Stat("/etc/goat-one/goat-one.yml"); err == nil {
+		config.Load("/etc/goat-one/goat-one.yml", &cfg)
+	}
+
+	if _, err := os.Stat("~/.goat-one/goat-one.yml"); err == nil {
+		config.Load("~/.goat-one/goat-one.yml", &cfg)
+	}
+
 }
