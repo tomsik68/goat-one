@@ -19,5 +19,10 @@ var (
 )
 
 func main() {
+	if flag.NArg() == 0 {
+		flag.PrintDefaults()
+		return
+	}
+
 	flag.Parse()
 }
